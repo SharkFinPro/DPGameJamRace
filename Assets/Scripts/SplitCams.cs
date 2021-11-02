@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SplitCams : MonoBehaviour
 {
+    public float CamMoveSpeed = 10;
+    private Vector3 velocity = Vector3.zero;
     public GameObject Camera1;
     public GameObject Camera2;
     public GameObject Player1;
@@ -17,7 +19,12 @@ public class SplitCams : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Camera1.transform.position = new Vector3(0, 0, Player1.transform.position.y);
-        Camera2.transform.position = new Vector3(0, 0, Player2.transform.position.y);
+        Vector3 NextCamera1Pos = new Vector3(Camera1.transform.position.x, Player1.transform.position.y, -10f);
+        Vector3 NextCamera2Pos = new Vector3(Camera2.transform.position.x, Player2.transform.position.y, -10);
+        Camera1.transform.position = Vector3.Lerp(Camera1.transform.position, NextCamera1Pos, Time.deltaTime * CamMoveSpeed);
+        Camera2.transform.position = Vector3.Lerp(Camera2.transform.position, NextCamera2Pos, Time.deltaTime * CamMoveSpeed);
+        //Camera1.transform.position = Vector3.SmoothDamp(new Vector3(Camera1.transform.position.x, Camera1.transform.position.y, -10f), NextCamera1Pos, ref velocity, CamMoveSpeed);
+        //Camera2.transform.position = Vector3.SmoothDamp(new Vector3(Camera2.transform.position.x, Camera2.transform.position.y, -10f), NextCamera2Pos, ref velocity, CamMoveSpeed);
     }
 }
+
