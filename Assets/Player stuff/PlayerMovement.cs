@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpHeight;
     private bool jumping = true;
+    public int jumps;
+    private int jumped = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +25,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey("up") && !jumping)
+        if (Input.GetKeyDown("up") && !jumping)
         {
             rb.AddForce(new Vector2(0f, jumpHeight));
-            jumping = true;
+            jumped++;
+            if (jumped >= jumps - 1)
+            {
+                jumping = true;
+            }
         }
 
         if (Input.GetKey("right"))
@@ -46,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if (bc.IsTouchingLayers(mask))
         {
             jumping = false;
+            jumped = 0;
         }
     }
 }
