@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LayerMask floorLayerMask = LayerMask.GetMask("Platforms");
+        bool touchingFloor = boxCollider.IsTouchingLayers(floorLayerMask);
+
         if (Input.GetKeyDown(upKey) && !jumping)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
@@ -41,19 +44,33 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(rightKey))
         {
-            rigidBody.velocity += new Vector2(speed, 0f);
+            if (touchingFloor)
+            {
+                rigidBody.velocity += new Vector2(speed / 10, 0f);
+            }
+            else
+            {
+                rigidBody.AddForce(new Vector2(speed, 0f));
+            }
         }
 
         if (Input.GetKey(leftKey))
         {
-            rigidBody.velocity -= new Vector2(speed, 0f);
+            if (touchingFloor)
+            {
+                rigidBody.velocity -= new Vector2(speed / 10, 0f);
+            }
+            else
+            {
+                rigidBody.AddForce(new Vector2(-speed, 0f));
+            }
         }
 
-        float x = Mathf.Clamp(rigidBody.velocity.x, -maxSpeed, maxSpeed);
-        rigidBody.velocity = new Vector2(x, rigidBody.velocity.y);
+        float xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxSpeed, maxSpeed);
+        rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
 
-        LayerMask mask = LayerMask.GetMask("Platforms");
-        if (boxCollider.IsTouchingLayers(mask))
+        
+        if (touchingFloor)
         {
             jumping = false;
             jumped = 0;
