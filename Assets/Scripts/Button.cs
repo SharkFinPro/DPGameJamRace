@@ -35,7 +35,10 @@ public class Button : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
-            isOn = true;
+            if (ts.IsActive)
+            {
+                isOn = true;
+            }
         }
     }
 }
