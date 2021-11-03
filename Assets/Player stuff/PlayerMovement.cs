@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public string leftKey;
     public string rightKey;
 
+    public CapsuleCollider2D capsuleCollider;
+
     private LayerMask floorLayerMask;
 
     // Start is called before the first frame update
@@ -37,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool touchingFloor = boxCollider.IsTouchingLayers(floorLayerMask);
+        bool touchingFloor = boxCollider.IsTouchingLayers(floorLayerMask);        
 
         if (Input.GetKeyDown(upKey) && !jumping)
         {
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        // Air movement        
+        // Air movement
         if (Input.GetKey(rightKey))
         {
             rigidBody.AddForce(new Vector2(airSpeed, 0f));
@@ -90,8 +92,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // make this only triggered if layer = Platforms
-        jumping = false;
-        jumped = 0;
+        if (capsuleCollider.IsTouchingLayers(floorLayerMask))
+        {
+            jumping = false;
+            jumped = 0;
+        }
     }
 }
