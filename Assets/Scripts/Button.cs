@@ -6,12 +6,13 @@ public class Button : MonoBehaviour
 {
     public bool OnPlayer1Side;
     public bool isOn = false;
-    private bool isActive = false;
+    public bool isActive = false;
     public GameObject trigger;
+    SpriteRenderer SpriteColor;
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer color = this.gameObject.GetComponent<SpriteRenderer>();
+        SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -19,7 +20,15 @@ public class Button : MonoBehaviour
     {
         if (isActive == false)
         {
-           
+            SpriteColor.material.color = Color.gray;
+        }
+        else if (isActive == true && isOn == false)
+        {
+            SpriteColor.material.color = Color.red;
+        }
+        else if (isActive == true && isOn == true)
+        {
+            SpriteColor.material.color = Color.green;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +40,7 @@ public class Button : MonoBehaviour
                 isOn = true;
             }
             if (collision.gameObject.tag == "Player")
-            {
+            {                
                 isActive = true;
             }
         }
