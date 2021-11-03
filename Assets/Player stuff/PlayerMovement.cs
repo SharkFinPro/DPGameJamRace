@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public float groundFriction;
+    public float airFriction;
 
     public float jumpHeight;
     private bool jumping = true;
@@ -75,6 +76,10 @@ public class PlayerMovement : MonoBehaviour
             jumping = false;
             jumped = 0;
             rigidBody.velocity /= new Vector2(groundFriction, 1f);
+        }
+        else
+        {
+            rigidBody.velocity /= new Vector2(airFriction, 1f);
         }
     }
 }
