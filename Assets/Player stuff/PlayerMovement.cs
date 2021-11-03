@@ -7,10 +7,15 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rigidBody;
     public BoxCollider2D boxCollider;
 
-    public float speed;
-    public float maxSpeed;
+    public float groundSpeed;
+    public float maxGroundSpeed;
     public float groundFriction;
+
+    public float airSpeed;
+    public float maxAirSpeed;
     public float airFriction;
+
+    private float xVelocity;
 
     public float jumpHeight;
     private bool jumping = true;
@@ -21,65 +26,72 @@ public class PlayerMovement : MonoBehaviour
     public string leftKey;
     public string rightKey;
 
+    private LayerMask floorLayerMask;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        floorLayerMask = LayerMask.GetMask("Platforms");
     }
 
     // Update is called once per frame
     void Update()
     {
-        LayerMask floorLayerMask = LayerMask.GetMask("Platforms");
         bool touchingFloor = boxCollider.IsTouchingLayers(floorLayerMask);
 
         if (Input.GetKeyDown(upKey) && !jumping)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
             jumped++;
-            if (jumped >= jumps - 1)
+            if (jumped >= jumps)
             {
                 jumping = true;
             }
         }
 
+        
+        // Ground movement
+        if (touchingFloor)
+        {
+            if (Input.GetKey(rightKey))
+            {
+                rigidBody.velocity += new Vector2(groundSpeed / 10, 0f);
+            }
+
+            if (Input.GetKey(leftKey))
+            {
+                rigidBody.velocity -= new Vector2(groundSpeed / 10, 0f);
+            }
+
+            rigidBody.velocity /= new Vector2(groundFriction, 1f);
+
+            xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxGroundSpeed, maxGroundSpeed);
+            rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
+            return;
+        }
+
+
+        // Air movement        
         if (Input.GetKey(rightKey))
         {
-            if (touchingFloor)
-            {
-                rigidBody.velocity += new Vector2(speed / 10, 0f);
-            }
-            else
-            {
-                rigidBody.AddForce(new Vector2(speed, 0f));
-            }
+            rigidBody.AddForce(new Vector2(airSpeed, 0f));
         }
 
         if (Input.GetKey(leftKey))
         {
-            if (touchingFloor)
-            {
-                rigidBody.velocity -= new Vector2(speed / 10, 0f);
-            }
-            else
-            {
-                rigidBody.AddForce(new Vector2(-speed, 0f));
-            }
+            rigidBody.AddForce(new Vector2(-airSpeed, 0f));
         }
 
-        float xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxSpeed, maxSpeed);
+        rigidBody.velocity /= new Vector2(airFriction, 1f);
+
+        xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxAirSpeed, maxAirSpeed);
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
+    }
 
-        
-        if (touchingFloor)
-        {
-            jumping = false;
-            jumped = 0;
-            rigidBody.velocity /= new Vector2(groundFriction, 1f);
-        }
-        else
-        {
-            rigidBody.velocity /= new Vector2(airFriction, 1f);
-        }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // make this only triggered if layer = Platforms
+        jumping = false;
+        jumped = 0;
     }
 }
