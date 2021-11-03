@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     Vector3 RespawnPoint;
+    public float RespawnTimer;
     public float DeathDepth = -10;
     GameObject Player;
+    Color playerColor;
     // Start is called before the first frame update
     void Start()
     {
+        SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
+        playerColor = SpriteColor.color;
         Player = this.gameObject;
         RespawnPoint = Player.transform.position;
     }
@@ -19,7 +23,9 @@ public class PlayerDeath : MonoBehaviour
     {
         if (Player.transform.position.y < DeathDepth)
         {
+            SetPlayerInactive();
             Player.transform.position = RespawnPoint;
+            Invoke("SetPlayerActive", RespawnTimer);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,22 +41,30 @@ public class PlayerDeath : MonoBehaviour
         if (collision.collider.gameObject.tag == "death")
         {
             SetPlayerInactive();
-            Player.transform.position = RespawnPoint;            
+            Player.transform.position = RespawnPoint;
+            Invoke("SetPlayerActive", RespawnTimer);
         }
     }
 
     void SetPlayerInactive()
     {
+        PlayerMovement playerMove = this.gameObject.GetComponent<PlayerMovement>();
+        playerMove.enabled = false;
         SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
         SpriteColor.color = Color.clear;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0, 0);
         rb.isKinematic = true;
     }
     void SetPlayerActive()
     {
+        PlayerMovement playerMove = this.gameObject.GetComponent<PlayerMovement>();
+        playerMove.enabled = true;
+        Player.transform.position = RespawnPoint;
         SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
-        SpriteColor.color = Color.white;
+        SpriteColor.color = playerColor;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0, 0);
         rb.isKinematic = false;
     }
 }
