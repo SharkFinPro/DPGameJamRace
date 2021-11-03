@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
-    public bool OnPlayer1Side;
+    public bool IsActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,27 +18,9 @@ public class Trigger : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (OnPlayer1Side == false)
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
-            if (collision.gameObject.tag == "Player2")
-            {
-                
-            }
-            if (collision.gameObject.tag == "Player")
-            {
-                
-            }
-        }
-        if (OnPlayer1Side == true)
-        {
-            if (collision.gameObject.tag == "Player" && isActive == true)
-            {
-                isOn = true;
-            }
-            if (collision.gameObject.tag == "Player2")
-            {
-                isActive = true;
-            }
+            IsActive = true;
         }
     }
 }

@@ -3,57 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Button : MonoBehaviour
-{
-    public bool OnPlayer1Side;
-    public bool isOn = false;
-    public bool isActive = false;
+{  
+    public bool isOn = false;   
     public GameObject trigger;
+    Trigger ts;
     SpriteRenderer SpriteColor;
     // Start is called before the first frame update
     void Start()
     {
+        ts = trigger.GetComponent<Trigger>();
         SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isActive == false)
+        if (ts.IsActive == false)
         {
             SpriteColor.material.color = Color.gray;
         }
-        else if (isActive == true && isOn == false)
+        else if (ts.IsActive == true && isOn == false)
         {
             SpriteColor.material.color = Color.red;
         }
-        else if (isActive == true && isOn == true)
+        else if (ts.IsActive == true && isOn == true)
         {
             SpriteColor.material.color = Color.green;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (OnPlayer1Side == false)
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
-            if (collision.gameObject.tag == "Player2" && isActive == true)
-            {
-                isOn = true;
-            }
-            if (collision.gameObject.tag == "Player")
-            {                
-                isActive = true;
-            }
-        }
-        if (OnPlayer1Side == true)
-        {
-            if (collision.gameObject.tag == "Player" && isActive == true)
-            {
-                isOn = true;
-            }
-            if (collision.gameObject.tag == "Player2")
-            {
-                isActive = true;
-            }
+            isOn = true;
         }
     }
 }
