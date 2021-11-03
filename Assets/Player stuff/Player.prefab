@@ -159,6 +159,9 @@ MonoBehaviour:
   leftKey: left
   rightKey: right
   capsuleCollider: {fileID: -2941184977687344115}
+  floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!70 &-2941184977687344115
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -28,12 +28,12 @@ public class PlayerMovement : MonoBehaviour
 
     public CapsuleCollider2D capsuleCollider;
 
-    private LayerMask floorLayerMask;
+    public LayerMask floorLayerMask;
 
     // Start is called before the first frame update
     void Start()
     {
-        floorLayerMask = LayerMask.GetMask("Platforms");
+        
     }
 
     // Update is called once per frame
