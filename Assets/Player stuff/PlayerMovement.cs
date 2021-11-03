@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public BoxCollider2D bc;
+    public Rigidbody2D rigidBody;
+    public BoxCollider2D boxCollider;
 
     public float speed;
     public float maxSpeed;
+    public float groundFriction;
 
     public float jumpHeight;
     private bool jumping = true;
     public int jumps;
     private int jumped = 0;
+
+    public string upKey;
+    public string leftKey;
+    public string rightKey;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +29,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown("up") && !jumping)
+        if (Input.GetKeyDown(upKey) && !jumping)
         {
-            rb.AddForce(new Vector2(0f, jumpHeight));
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
             jumped++;
             if (jumped >= jumps - 1)
             {
@@ -35,24 +39,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey(rightKey))
         {
-            rb.AddForce(new Vector2(speed, 0f));
+            rigidBody.velocity += new Vector2(speed, 0f);
         }
 
-        if (Input.GetKey("left"))
+        if (Input.GetKey(leftKey))
         {
-            rb.AddForce(new Vector2(-speed, 0f));
+            rigidBody.velocity -= new Vector2(speed, 0f);
         }
 
-        float x = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
-        rb.velocity = new Vector2(x, rb.velocity.y);
+        float x = Mathf.Clamp(rigidBody.velocity.x, -maxSpeed, maxSpeed);
+        rigidBody.velocity = new Vector2(x, rigidBody.velocity.y);
 
         LayerMask mask = LayerMask.GetMask("Platforms");
-        if (bc.IsTouchingLayers(mask))
+        if (boxCollider.IsTouchingLayers(mask))
         {
             jumping = false;
             jumped = 0;
+            rigidBody.velocity /= new Vector2(groundFriction, 1f);
         }
     }
 }
