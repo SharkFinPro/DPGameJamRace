@@ -34,7 +34,23 @@ public class PlayerDeath : MonoBehaviour
     {
         if (collision.collider.gameObject.tag == "death")
         {
+            SetPlayerInactive();
             Player.transform.position = RespawnPoint;            
         }
+    }
+
+    void SetPlayerInactive()
+    {
+        SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
+        SpriteColor.color = Color.clear;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
+    }
+    void SetPlayerActive()
+    {
+        SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
+        SpriteColor.color = Color.white;
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = false;
     }
 }
