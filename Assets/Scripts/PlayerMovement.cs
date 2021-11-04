@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxAirSpeed;
     public float airFriction;
 
+    private bool frozen = false;
+
     private float xVelocity;
 
     public float jumpHeight;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask floorLayerMask;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Player Movement */
+        if (frozen)
+        {
+            return;
+        }
+        
         bool touchingFloor = boxCollider.IsTouchingLayers(floorLayerMask);        
 
         if (Input.GetKeyDown(upKey) && !jumping)
@@ -97,5 +106,16 @@ public class PlayerMovement : MonoBehaviour
             jumping = false;
             jumped = 0;
         }
+    }
+
+    public void freeze()
+    {
+        frozen = true;
+        rigidBody.velocity = new Vector2(0f, 0f);
+    }
+
+    public void unFreeze()
+    {
+        frozen = false;
     }
 }
