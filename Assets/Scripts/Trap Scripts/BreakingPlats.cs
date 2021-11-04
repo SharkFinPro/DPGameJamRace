@@ -28,7 +28,7 @@ public class BreakingPlats : MonoBehaviour
             SpriteColor.color = Color.Lerp(currentColor, Color.clear, fadeTime * Time.deltaTime);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.gameObject.tag == "Player" || collision.collider.gameObject.tag == "Player2")
         {
