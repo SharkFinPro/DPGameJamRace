@@ -193,3 +193,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RespawnTimer: 1
   DeathDepth: -10
+  deathParticles: {fileID: 8967103893278626495, guid: 7b8fd81a58437d242a46d8cf1a98e594, type: 3}

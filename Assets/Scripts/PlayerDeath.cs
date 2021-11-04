@@ -7,6 +7,7 @@ public class PlayerDeath : MonoBehaviour
     Vector3 RespawnPoint;
     public float RespawnTimer;
     public float DeathDepth = -10;
+    public ParticleSystem deathParticles;
     GameObject Player;
     Color playerColor;
     // Start is called before the first frame update
@@ -66,5 +67,6 @@ public class PlayerDeath : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0, 0);
         rb.isKinematic = false;
+        //Instantiate(deathParticles);
     }
 }
