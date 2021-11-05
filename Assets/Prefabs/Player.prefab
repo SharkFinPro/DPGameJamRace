@@ -148,9 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 909489449277184490}
   boxCollider: {fileID: 909489449277184489}
-  groundSpeed: 1
+  groundSpeed: 0.9
   maxGroundSpeed: 6
-  groundFriction: 0.0025
+  groundFriction: 0.25
   airSpeed: 1
   maxAirSpeed: 5
   airFriction: 0.0025
