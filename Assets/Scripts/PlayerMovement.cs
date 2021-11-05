@@ -46,9 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if (frozen)
         {
             return;
-        }
-        
-        bool touchingFloor = boxCollider.IsTouchingLayers(floorLayerMask);        
+        }  
 
         if (Input.GetKeyDown(upKey) && !jumping)
         {
@@ -62,19 +60,19 @@ public class PlayerMovement : MonoBehaviour
 
         
         // Ground movement
-        if (touchingFloor)
+        if (boxCollider.IsTouchingLayers(floorLayerMask))
         {
             if (Input.GetKey(rightKey))
             {
-                rigidBody.velocity += new Vector2(groundSpeed / 10, 0f);
+                rigidBody.velocity += new Vector2(groundSpeed * Time.deltaTime * 100, 0f);
             }
 
             if (Input.GetKey(leftKey))
             {
-                rigidBody.velocity -= new Vector2(groundSpeed / 10, 0f);
+                rigidBody.velocity -= new Vector2(groundSpeed * Time.deltaTime * 100, 0f);
             }
 
-            rigidBody.velocity /= new Vector2(groundFriction, 1f);
+            rigidBody.velocity /= new Vector2(1 + (groundFriction * Time.deltaTime), 1f);
 
             xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxGroundSpeed, maxGroundSpeed);
             rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
@@ -85,15 +83,15 @@ public class PlayerMovement : MonoBehaviour
         // Air movement
         if (Input.GetKey(rightKey))
         {
-            rigidBody.AddForce(new Vector2(airSpeed, 0f));
+            rigidBody.AddForce(new Vector2(airSpeed * Time.deltaTime * 100, 0f));
         }
 
         if (Input.GetKey(leftKey))
         {
-            rigidBody.AddForce(new Vector2(-airSpeed, 0f));
+            rigidBody.AddForce(new Vector2(-airSpeed * Time.deltaTime * 100, 0f));
         }
 
-        rigidBody.velocity /= new Vector2(airFriction, 1f);
+        rigidBody.velocity /= new Vector2(1 + (airFriction * Time.deltaTime), 1f);
 
         xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxAirSpeed, maxAirSpeed);
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
