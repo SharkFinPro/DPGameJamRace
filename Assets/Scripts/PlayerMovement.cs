@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public Rigidbody2D rigidBody;
     public BoxCollider2D boxCollider;
 
@@ -99,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "win")
+        {
+            gameManager.endScene();
+        }
+
         if (capsuleCollider.IsTouchingLayers(floorLayerMask))
         {
             jumping = false;
