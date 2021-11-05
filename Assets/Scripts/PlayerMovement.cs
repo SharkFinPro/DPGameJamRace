@@ -64,15 +64,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(rightKey))
             {
-                rigidBody.velocity += new Vector2(groundSpeed * Time.deltaTime * 100, 0f);
+                rigidBody.velocity += new Vector2(groundSpeed * Time.deltaTime * 1000, 0f);
             }
 
             if (Input.GetKey(leftKey))
             {
-                rigidBody.velocity -= new Vector2(groundSpeed * Time.deltaTime * 100, 0f);
+                rigidBody.velocity -= new Vector2(groundSpeed * Time.deltaTime * 1000, 0f);
             }
 
-            rigidBody.velocity /= new Vector2(1 + (groundFriction * Time.deltaTime), 1f);
+            rigidBody.velocity /= new Vector2(1 + (groundFriction * Time.deltaTime * 10), 1f);
 
             xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxGroundSpeed, maxGroundSpeed);
             rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
@@ -83,15 +83,15 @@ public class PlayerMovement : MonoBehaviour
         // Air movement
         if (Input.GetKey(rightKey))
         {
-            rigidBody.AddForce(new Vector2(airSpeed * Time.deltaTime * 100, 0f));
+            rigidBody.AddForce(new Vector2(airSpeed * Time.deltaTime * 1000, 0f));
         }
 
         if (Input.GetKey(leftKey))
         {
-            rigidBody.AddForce(new Vector2(-airSpeed * Time.deltaTime * 100, 0f));
+            rigidBody.AddForce(new Vector2(-airSpeed * Time.deltaTime * 1000, 0f));
         }
 
-        rigidBody.velocity /= new Vector2(1 + (airFriction * Time.deltaTime), 1f);
+        rigidBody.velocity /= new Vector2(1 + (airFriction * Time.deltaTime * 10), 1f);
 
         xVelocity = Mathf.Clamp(rigidBody.velocity.x, -maxAirSpeed, maxAirSpeed);
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
