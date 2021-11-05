@@ -331,6 +331,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 909489449277184488, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+      propertyPath: upKey
+      value: w
+      objectReference: {fileID: 0}
+    - target: {fileID: 909489449277184488, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+      propertyPath: leftKey
+      value: a
+      objectReference: {fileID: 0}
+    - target: {fileID: 909489449277184488, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+      propertyPath: rightKey
+      value: d
+      objectReference: {fileID: 0}
     - target: {fileID: 909489449277184491, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -416,6 +428,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!61 &1896521485 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 909489449277184489, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+  m_PrefabInstance: {fileID: 1593551270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &2043218739 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 909489449277184489, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+  m_PrefabInstance: {fileID: 1125000370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1232278935953006388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,8 +513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1635078660}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  player1: {fileID: 1896521485}
+  player2: {fileID: 2043218739}
   timeToRestoreDoor: 0
 --- !u!61 &1232278935953006391
 BoxCollider2D:
