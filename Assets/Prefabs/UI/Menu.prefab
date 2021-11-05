@@ -249,7 +249,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DPGameJamTest
+  m_text: 'DPGameJamRace
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 333541203de8a63438749272214caf50, type: 2}
   m_sharedMaterial: {fileID: -5506734012453749382, guid: 333541203de8a63438749272214caf50, type: 2}

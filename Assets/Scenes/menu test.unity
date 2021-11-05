@@ -567,6 +567,10 @@ PrefabInstance:
       propertyPath: rightKey
       value: d
       objectReference: {fileID: 0}
+    - target: {fileID: 909489449277184488, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+      propertyPath: groundFriction
+      value: 0.0025
+      objectReference: {fileID: 0}
     - target: {fileID: 909489449277184491, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -695,6 +699,13 @@ PrefabInstance:
     - target: {fileID: 1285327994198381151, guid: 0af7dc54f11cd23479b8377d5d4cfdbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285327994226172516, guid: 0af7dc54f11cd23479b8377d5d4cfdbf, type: 3}
+      propertyPath: m_text
+      value: 'Press Space to Start
+
+
+        Press esc to Exit'
       objectReference: {fileID: 0}
     - target: {fileID: 1285327994601031014, guid: 0af7dc54f11cd23479b8377d5d4cfdbf, type: 3}
       propertyPath: m_Camera
