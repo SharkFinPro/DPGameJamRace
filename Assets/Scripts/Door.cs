@@ -5,12 +5,13 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public Collider2D button;
-    public Collider2D player;
+    public Collider2D player1;
+    public Collider2D player2;
     public float timeToRestoreDoor = 0;
 
     void Update()
     {
-        if (button.IsTouching(player) && Input.GetKey(KeyCode.LeftShift))
+        if (button.IsTouching(player1) && Input.GetKey(KeyCode.LeftShift) || button.IsTouching(player2) && Input.GetKey(KeyCode.RightShift))
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.black;
             timeToRestoreDoor = 5;
