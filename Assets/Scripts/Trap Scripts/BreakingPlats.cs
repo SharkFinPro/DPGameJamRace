@@ -7,38 +7,38 @@ public class BreakingPlats : MonoBehaviour
     public float delay;
     public float fadeTime;
     public float respawnTime;
-    Rigidbody2D rb;
-    EnableScript enabler;
     public GameObject enablerObj;
     bool fadeOut = false;
     Vector3 homePos;
-    Color oldColor;
-    Color tempClear;
     Quaternion rotationStorage;
-    // Start is called before the first frame update
+
+    private Rigidbody2D rigidBody;
+    private BoxCollider2D boxCollider;
+    private SpriteRenderer spriteRenderer;
+    private EnableScript enabler;
+
     void Start()
     {
-        SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
-        oldColor = SpriteColor.color;
-        rb = this.GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
+
         enabler = enablerObj.GetComponent<EnableScript>();
-        rb.isKinematic = true;
-        homePos = this.gameObject.transform.position;
-        Color currentColor = SpriteColor.color;
-        tempClear = currentColor;
-        tempClear.a = 0;
+
+        rigidBody.isKinematic = true;
+        homePos = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(fadeOut == true)
         {
-            SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
-            Color currentColor = SpriteColor.color;            
-            SpriteColor.color = Color.Lerp(currentColor, tempClear, fadeTime * Time.deltaTime);
-        }      
+            Color tempColor = spriteRenderer.color;
+            tempColor.a -= (1f / fadeTime) * Time.deltaTime;
+            spriteRenderer.color = tempColor;
+        }
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {        
         if (collision.collider.gameObject.tag == "Player" || collision.collider.gameObject.tag == "Player2")
@@ -50,31 +50,34 @@ public class BreakingPlats : MonoBehaviour
         }
         else if (collision.collider.gameObject.layer == 6)
         {
-            //fadeOut = true;        
+            fadeOut = true;        
             Invoke("DestroyObj", fadeTime);
         }
     }
 
     void Fall()
     {
-        rb.isKinematic = false;
+        rigidBody.isKinematic = false;
     }
+
     void DestroyObj()
     {
-        //fadeOut = false;
-        BoxCollider2D tempCol = this.gameObject.GetComponent<BoxCollider2D>();
-        tempCol.enabled = false;
-        rb.isKinematic = true;
+        fadeOut = false;
+        boxCollider.enabled = false;
+        rigidBody.isKinematic = true;
         Invoke("RespawnObj", respawnTime);
     }
 
     void RespawnObj()
     {
         fadeOut = false;
-        this.gameObject.transform.position = homePos;
-        rb.velocity = new Vector2(0, 0);
+        transform.position = homePos;
+        rigidBody.velocity = new Vector2(0, 0);
         this.transform.rotation = rotationStorage;
-        BoxCollider2D tempCol = this.gameObject.GetComponent<BoxCollider2D>();
-        tempCol.enabled = true;        
+        boxCollider.enabled = true;
+
+        Color tempColor = spriteRenderer.color;
+        tempColor.a = 1f;
+        spriteRenderer.color = tempColor;
     }
 }
