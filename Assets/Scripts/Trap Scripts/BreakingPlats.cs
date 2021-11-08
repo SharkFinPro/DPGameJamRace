@@ -50,13 +50,13 @@ public class BreakingPlats : MonoBehaviour
         }
         else if (collision.collider.gameObject.layer == 6)
         {
-            fadeOut = true;        
+            //fadeOut = true;        
             Invoke("DestroyObj", fadeTime);
         }
     }
     void DestroyObj()
     {
-        fadeOut = false;
+        //fadeOut = false;
         BoxCollider2D tempCol = this.gameObject.GetComponent<BoxCollider2D>();
         tempCol.enabled = false;
         rb.isKinematic = true;
