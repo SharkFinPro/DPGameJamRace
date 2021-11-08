@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public PlayerMovement player1;
@@ -30,7 +32,10 @@ public class GameManager : MonoBehaviour
         else if (gameState == "end")
         {
             if (Input.GetKeyDown("return"))
-                menuScene();
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+            }
         }
     }
 
