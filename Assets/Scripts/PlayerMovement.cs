@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
         
         // Ground movement
-        if (boxCollider.IsTouchingLayers(floorLayerMask))
+        if (capsuleCollider.IsTouchingLayers(floorLayerMask))
         {
             if (Input.GetKey(rightKey))
             {
