@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BreakingPlats : MonoBehaviour
 {
-    public int delay;
+    public float delay;
     public float fadeTime;
     public float respawnTime;
     Rigidbody2D rb;
@@ -45,7 +45,7 @@ public class BreakingPlats : MonoBehaviour
         {
             if (enabler.isActivated == true)
             {
-                rb.isKinematic = false;
+                Invoke("Fall", delay);
             }
         }
         else if (collision.collider.gameObject.layer == 6)
@@ -53,6 +53,11 @@ public class BreakingPlats : MonoBehaviour
             //fadeOut = true;        
             Invoke("DestroyObj", fadeTime);
         }
+    }
+
+    void Fall()
+    {
+        rb.isKinematic = false;
     }
     void DestroyObj()
     {

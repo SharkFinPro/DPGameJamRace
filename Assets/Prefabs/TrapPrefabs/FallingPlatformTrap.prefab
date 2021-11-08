@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a6781fbf610b84fbd5fe172073c8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0
+  delay: 0.25
   fadeTime: 0.3
   respawnTime: 1.5
   enablerObj: {fileID: 4803084541183646433}
