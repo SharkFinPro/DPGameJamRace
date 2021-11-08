@@ -11,12 +11,17 @@ public class GameManager : MonoBehaviour
 
     public GameObject menuOverlay;
     public GameObject endOverlay;
+    public AudioSource musicPlayer;
+    public AudioClip menuTheme;
+    public AudioClip gameTheme;
 
     private string gameState = "menu";
 
     void Start()
     {
         menuScene();
+        musicPlayer.clip = menuTheme;
+        musicPlayer.Play(0);
     }
 
     void Update()
@@ -50,6 +55,9 @@ public class GameManager : MonoBehaviour
         player2.unFreeze();
         menuOverlay.SetActive(false);
         gameState = "play";
+        musicPlayer.Stop();
+        musicPlayer.clip = gameTheme;
+        musicPlayer.Play(0);
     }
 
     private void menuScene()
