@@ -28,6 +28,9 @@ public class PlayerManager : MonoBehaviour
     public float DeathDepth = -10;
     public ParticleSystem deathParticles;
 
+    public AudioSource soundEffectPlayer;
+    public AudioClip deathSound;
+
     /* Private Variables */
     private Rigidbody2D rigidBody;
     private CapsuleCollider2D groundCollider;
@@ -59,6 +62,9 @@ public class PlayerManager : MonoBehaviour
         if (rigidBody.position.y < DeathDepth)
         {
             SetPlayerInactive();
+            soundEffectPlayer.Stop();
+            soundEffectPlayer.clip = deathSound;
+            soundEffectPlayer.Play(0);
             rigidBody.position = respawnPoint;
             Instantiate(deathParticles, rigidBody.position, Quaternion.identity);
             Invoke("SetPlayerActive", RespawnTimer);
