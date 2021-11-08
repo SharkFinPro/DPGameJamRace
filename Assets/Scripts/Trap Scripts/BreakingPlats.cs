@@ -45,11 +45,7 @@ public class BreakingPlats : MonoBehaviour
         {
             if (enabler.isActivated == true)
             {
-<<<<<<< Updated upstream
                 Invoke("Fall", delay);
-=======
-                rigidBody.isKinematic = false;
->>>>>>> Stashed changes
             }
         }
         else if (collision.collider.gameObject.layer == 6)
@@ -59,13 +55,11 @@ public class BreakingPlats : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
     void Fall()
     {
-        rb.isKinematic = false;
+        rigidBody.isKinematic = false;
     }
-=======
->>>>>>> Stashed changes
+
     void DestroyObj()
     {
         fadeOut = false;
