@@ -8,12 +8,27 @@ public class Door : MonoBehaviour
     public Collider2D player1;
     public Collider2D player2;
     public float timeToRestoreDoor = 0;
+    public float transformDistance = 10.0f;
+
+    private void Start()
+    {
+        button.tag = "open";
+    }
 
     void Update()
     {
-        if (button.IsTouching(player1) && Input.GetKey(KeyCode.LeftShift) || button.IsTouching(player2) && Input.GetKey(KeyCode.RightShift))
+        if (button.IsTouching(player1) && Input.GetKey(KeyCode.LeftShift) && button.tag == "open")
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            button.tag = "closed";
+            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2(transform.position.x, transform.position.y + transformDistance);
+            timeToRestoreDoor = 5;
+        }
+        if (button.IsTouching(player2) && Input.GetKey(KeyCode.RightShift) && button.tag == "open")
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            button.tag = "closed";
+            GameObject.FindGameObjectWithTag("Player2").transform.position = new Vector2(transform.position.x, transform.position.y + transformDistance);
             timeToRestoreDoor = 5;
         }
         else
@@ -24,6 +39,7 @@ public class Door : MonoBehaviour
                 if (timeToRestoreDoor <= 0)
                 {
                     gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                    button.tag = "open";
                 }
 
             }

@@ -8,6 +8,8 @@ TagManager:
   - respawn
   - death
   - win
+  - open
+  - closed
   layers:
   - Default
   - TransparentFX
