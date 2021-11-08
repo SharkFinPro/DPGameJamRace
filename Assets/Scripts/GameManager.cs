@@ -14,9 +14,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        endOverlay.SetActive(false);
-        player1.freeze();
-        player2.freeze();
+        menuScene();
     }
 
     void Update()
@@ -24,30 +22,15 @@ public class GameManager : MonoBehaviour
         if (gameState == "menu")
         {
             if (Input.GetKeyDown("space"))
-            {
-                player1.unFreeze();
-                player2.unFreeze();
-                menuOverlay.SetActive(false);
-                gameState = "play";
-            }
+                playScene();
 
             if (Input.GetKeyDown("escape"))
-            {
                 Application.Quit();
-            }
-        }
-        else if (gameState == "play")
-        {
-            //
         }
         else if (gameState == "end")
         {
             if (Input.GetKeyDown("return"))
-            {
-                gameState = "menu";
-                endOverlay.SetActive(false);
-                menuOverlay.SetActive(true);
-            }
+                menuScene();
         }
     }
 
@@ -55,7 +38,24 @@ public class GameManager : MonoBehaviour
     {
         player1.freeze();
         player2.freeze();
-        gameState = "end";
         endOverlay.SetActive(true);
+        gameState = "end";
+    }
+
+    private void playScene()
+    {
+        player1.unFreeze();
+        player2.unFreeze();
+        menuOverlay.SetActive(false);
+        gameState = "play";
+    }
+
+    private void menuScene()
+    {
+        player1.freeze();
+        player2.freeze();
+        endOverlay.SetActive(false);
+        menuOverlay.SetActive(true);
+        gameState = "menu";
     }
 }
