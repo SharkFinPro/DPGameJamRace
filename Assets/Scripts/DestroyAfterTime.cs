@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//tyler wrote this
 public class DestroyAfterTime : MonoBehaviour
 {
     public int lifetime;
