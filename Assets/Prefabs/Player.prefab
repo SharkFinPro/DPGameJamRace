@@ -192,6 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c077abfe6e0a0e44a1a608b2f50a7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnTimer: 2
+  RespawnTimer: 3
   DeathDepth: -10
   deathParticles: {fileID: 8967103893278626495, guid: 7b8fd81a58437d242a46d8cf1a98e594, type: 3}

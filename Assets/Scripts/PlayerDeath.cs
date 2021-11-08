@@ -43,6 +43,7 @@ public class PlayerDeath : MonoBehaviour
         {
             SetPlayerInactive();
             Player.transform.position = RespawnPoint;
+            Instantiate(deathParticles, this.gameObject.transform.position, Quaternion.identity);
             Invoke("SetPlayerActive", RespawnTimer);
         }
     }
