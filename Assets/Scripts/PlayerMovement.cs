@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameManager gameManager;
-
-    public Rigidbody2D rigidBody;
-    public BoxCollider2D boxCollider;
-
+    /* Public Variables */
     public float groundSpeed;
     public float maxGroundSpeed;
     public float groundFriction;
@@ -17,47 +13,40 @@ public class PlayerMovement : MonoBehaviour
     public float maxAirSpeed;
     public float airFriction;
 
-    private bool frozen = false;
-
-    private float xVelocity;
-
     public float jumpHeight;
-    private bool jumping = true;
     public int jumps;
-    private int jumped = 0;
+
+    public LayerMask floorLayerMask;
+
+    public GameManager gameManager;
+
+    public Rigidbody2D rigidBody;
+    public BoxCollider2D boxCollider;
+    public CapsuleCollider2D capsuleCollider;
 
     public string upKey;
     public string leftKey;
     public string rightKey;
 
-    public CapsuleCollider2D capsuleCollider;
+    /* Private Variables */
+    private bool frozen = false;
+    private float xVelocity;
 
-    public LayerMask floorLayerMask;
+    private bool jumping = true;
+    private int jumped = 0;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    /* Game Updates */
     void Update()
     {
         /* Player Movement */
         if (frozen)
-        {
             return;
-        }  
 
         if (Input.GetKeyDown(upKey) && !jumping)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
-            jumped++;
-            if (jumped >= jumps)
-            {
+            if (++jumped >= jumps)
                 jumping = true;
-            }
         }
 
         
@@ -65,14 +54,10 @@ public class PlayerMovement : MonoBehaviour
         if (capsuleCollider.IsTouchingLayers(floorLayerMask))
         {
             if (Input.GetKey(rightKey))
-            {
                 rigidBody.velocity += new Vector2(groundSpeed * Time.deltaTime * 1000, 0f);
-            }
 
             if (Input.GetKey(leftKey))
-            {
                 rigidBody.velocity -= new Vector2(groundSpeed * Time.deltaTime * 1000, 0f);
-            }
 
             rigidBody.velocity /= new Vector2(1 + (groundFriction * Time.deltaTime * 10), 1f);
 
@@ -84,14 +69,10 @@ public class PlayerMovement : MonoBehaviour
 
         // Air movement
         if (Input.GetKey(rightKey))
-        {
             rigidBody.AddForce(new Vector2(airSpeed * Time.deltaTime * 1000, 0f));
-        }
 
         if (Input.GetKey(leftKey))
-        {
             rigidBody.AddForce(new Vector2(-airSpeed * Time.deltaTime * 1000, 0f));
-        }
 
         rigidBody.velocity /= new Vector2(1 + (airFriction * Time.deltaTime * 10), 1f);
 
@@ -104,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.tag == "win")
         {
             gameManager.endScene();
+            return;
         }
 
         if (capsuleCollider.IsTouchingLayers(floorLayerMask))
