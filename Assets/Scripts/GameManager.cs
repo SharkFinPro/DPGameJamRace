@@ -32,10 +32,7 @@ public class GameManager : MonoBehaviour
         else if (gameState == "end")
         {
             if (Input.GetKeyDown("return"))
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-            }
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

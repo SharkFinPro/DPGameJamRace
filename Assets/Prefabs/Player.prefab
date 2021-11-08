@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 909489449277184492}
   - component: {fileID: 909489449277184490}
   - component: {fileID: 909489449277184489}
-  - component: {fileID: 909489449277184488}
   - component: {fileID: -2941184977687344115}
-  - component: {fileID: 2731678179289380437}
+  - component: {fileID: 909489449277184488}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -134,36 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &909489449277184488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909489449277184493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2104d2be3259d584a9063598cdc48a63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  rigidBody: {fileID: 909489449277184490}
-  boxCollider: {fileID: 909489449277184489}
-  capsuleCollider: {fileID: -2941184977687344115}
-  floorLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  groundSpeed: 0.9
-  maxGroundSpeed: 6
-  groundFriction: 0.75
-  airSpeed: 1
-  maxAirSpeed: 5
-  airFriction: 0.0025
-  jumpHeight: 7.5
-  jumps: 2
-  upKey: up
-  leftKey: left
-  rightKey: right
 --- !u!70 &-2941184977687344115
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -180,7 +149,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.4}
   m_Size: {x: 1, y: 0.25}
   m_Direction: 1
---- !u!114 &2731678179289380437
+--- !u!114 &909489449277184488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,9 +158,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 909489449277184493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c077abfe6e0a0e44a1a608b2f50a7ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 2104d2be3259d584a9063598cdc48a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundSpeed: 0.9
+  maxGroundSpeed: 6
+  groundFriction: 0.75
+  airSpeed: 1
+  maxAirSpeed: 5
+  airFriction: 0.0025
+  jumpHeight: 7.5
+  jumps: 2
+  floorLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  gameManager: {fileID: 0}
+  upKey: up
+  leftKey: left
+  rightKey: right
   RespawnTimer: 3
   DeathDepth: -10
   deathParticles: {fileID: 8967103893278626495, guid: 7b8fd81a58437d242a46d8cf1a98e594, type: 3}
