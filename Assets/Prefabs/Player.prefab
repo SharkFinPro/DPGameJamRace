@@ -146,11 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2104d2be3259d584a9063598cdc48a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   rigidBody: {fileID: 909489449277184490}
   boxCollider: {fileID: 909489449277184489}
   groundSpeed: 0.9
   maxGroundSpeed: 6
-  groundFriction: 0.25
+  groundFriction: 0.75
   airSpeed: 1
   maxAirSpeed: 5
   airFriction: 0.0025
