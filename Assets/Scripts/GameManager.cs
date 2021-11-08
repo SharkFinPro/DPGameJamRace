@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerMovement player1;
-    public PlayerMovement player2;
+    public PlayerManager player1;
+    public PlayerManager player2;
 
     public GameObject menuOverlay;
     public GameObject endOverlay;
