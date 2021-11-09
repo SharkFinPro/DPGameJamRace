@@ -45,12 +45,10 @@ public class EnableScript : MonoBehaviour
     {
         isActivated = buttonscript.isOn;
         if (buttonscript.isOn)
-        { 
+        {
             SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();            
             if (fadeIn)
-            {
                 SpriteColor.color = Color.Lerp(SpriteColor.color, oldColor, fadeTime * Time.deltaTime);
-            }
             else
                 SpriteColor.color = oldColor;
 

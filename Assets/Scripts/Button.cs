@@ -22,6 +22,9 @@ public class Button : MonoBehaviour
     private Trigger trigger;
     private SpriteRenderer SpriteColor;
 
+    public AudioSource soundEffectPlayer;
+    public AudioClip buttonSound;
+
     void Start()
     {
         trigger = triggerObject.GetComponent<Trigger>();
@@ -44,6 +47,8 @@ public class Button : MonoBehaviour
         {
             if (trigger.IsActive)
                 isOn = true;
+                soundEffectPlayer.clip = buttonSound;
+                soundEffectPlayer.Play(0);
         }
     }
 }
