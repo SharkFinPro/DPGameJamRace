@@ -6659,6 +6659,10 @@ PrefabInstance:
       value: d
       objectReference: {fileID: 0}
     - target: {fileID: 909489449277184488, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
+      propertyPath: DeathDepth
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 909489449277184488, guid: 0911d7efa2e10424a9db1585754587e4, type: 3}
       propertyPath: PlayerNumber
       value: 1
       objectReference: {fileID: 0}

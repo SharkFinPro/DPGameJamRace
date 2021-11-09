@@ -24,7 +24,7 @@ public class Button : MonoBehaviour
 
     public AudioSource soundEffectPlayer;
     public AudioClip buttonSound;
-
+    private bool HasBeenPressed = false;
     void Start()
     {
         trigger = triggerObject.GetComponent<Trigger>();
@@ -48,7 +48,11 @@ public class Button : MonoBehaviour
             if (trigger.IsActive)
                 isOn = true;
                 soundEffectPlayer.clip = buttonSound;
+            if (HasBeenPressed == false)
+            {
+                HasBeenPressed = true;
                 soundEffectPlayer.Play(0);
+            }
         }
     }
 }
