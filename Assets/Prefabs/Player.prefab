@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2104d2be3259d584a9063598cdc48a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerNumber: 0
   groundSpeed: 0.9
   maxGroundSpeed: 6
   groundFriction: 0.75
@@ -178,10 +179,11 @@ MonoBehaviour:
   leftKey: left
   rightKey: right
   RespawnTimer: 3
-  DeathDepth: -10
+  DeathDepth: -50
   deathParticles: {fileID: 8967103893278626495, guid: 7b8fd81a58437d242a46d8cf1a98e594, type: 3}
   soundEffectPlayer: {fileID: 5635587012433142509}
   deathSound: {fileID: 8300000, guid: 97048f8791ef4584e95d84863dada7f6, type: 3}
+  winSound: {fileID: 0}
 --- !u!82 &5635587012433142509
 AudioSource:
   m_ObjectHideFlags: 0
