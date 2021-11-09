@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         menuScene();
+
         musicPlayer.clip = menuTheme;
         musicPlayer.Play(0);
     }
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         player2.unFreeze();
         menuOverlay.SetActive(false);
         gameState = "play";
+
         musicPlayer.Stop();
         musicPlayer.clip = gameTheme;
         musicPlayer.Play(0);
@@ -74,8 +76,8 @@ public class GameManager : MonoBehaviour
 
     private void menuScene()
     {
-        player1.freeze();
         player2.freeze();
+        player1.freeze();
         endOverlay.SetActive(false);
         menuOverlay.SetActive(true);
         gameState = "menu";
