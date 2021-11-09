@@ -10,6 +10,9 @@ public class Door : MonoBehaviour
     public float timeToRestoreDoor = 0;
     public float transformDistance = 10.0f;
 
+    public AudioSource soundEffectPlayer;
+    public AudioClip teleportSound;
+
     private void Start()
     {
         button.tag = "open";
@@ -22,6 +25,8 @@ public class Door : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.black;
             button.tag = "closed";
             GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2(transform.position.x, transform.position.y + transformDistance);
+            soundEffectPlayer.clip = teleportSound;
+            soundEffectPlayer.Play(0);
             timeToRestoreDoor = 5;
         }
         if (button.IsTouching(player2) && Input.GetKey(KeyCode.RightShift) && button.tag == "open")
@@ -29,6 +34,8 @@ public class Door : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.black;
             button.tag = "closed";
             GameObject.FindGameObjectWithTag("Player2").transform.position = new Vector2(transform.position.x, transform.position.y + transformDistance);
+            soundEffectPlayer.clip = teleportSound;
+            soundEffectPlayer.Play(0);
             timeToRestoreDoor = 5;
         }
         else
