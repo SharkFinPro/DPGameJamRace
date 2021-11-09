@@ -1,38 +1,46 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	Teleporter.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Tyler Dean (tyler.dean@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//tyler wrote this
+
 public class Teleporter : MonoBehaviour
 {
     public GameObject exitPoint;
-    public GameObject trigger;
-    Trigger ts;    
-    // Start is called before the first frame update
+    public GameObject triggerObject;
+    
+    private Trigger trigger;
+
     void Start()
-    {       
-        ts = trigger.GetComponent<Trigger>();
+    {
+        trigger = triggerObject.GetComponent<Trigger>();
         SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
         SpriteColor.color = Color.gray;
     }
 
-    // Update is called once per frame
     void Update()
-    {         
-        if (ts.IsActive == true)
-        {
-            SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
-            SpriteColor.color = Color.green;           
-        }
+    {
+        if (!trigger.IsActive)
+            return;
+
+        SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
+        SpriteColor.color = Color.green;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
-        {
-            if (ts.IsActive == true)
-            {
-                collision.gameObject.transform.position = exitPoint.transform.position;
-            }
-        }
+        if ((collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2") && trigger.IsActive)
+            collision.gameObject.transform.position = exitPoint.transform.position;
     }
     
 }

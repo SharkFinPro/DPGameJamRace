@@ -1,7 +1,18 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	GameManager.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Melanie Baloban (melanie.baloban@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject menuOverlay;
     public GameObject endOverlay;
+
     public AudioSource musicPlayer;
     public AudioClip menuTheme;
     public AudioClip gameTheme;

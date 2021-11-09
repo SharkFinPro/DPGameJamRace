@@ -1,44 +1,49 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	Button.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Tyler Dean (tyler.dean@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//tyler wrote this
+
 public class Button : MonoBehaviour
 {  
     public bool isOn = false;   
-    public GameObject trigger;
-    Trigger ts;
-    SpriteRenderer SpriteColor;
-    // Start is called before the first frame update
+    public GameObject triggerObject;
+    
+    private Trigger trigger;
+    private SpriteRenderer SpriteColor;
+
     void Start()
     {
-        ts = trigger.GetComponent<Trigger>();
+        trigger = triggerObject.GetComponent<Trigger>();
         SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (ts.IsActive == false)
-        {
+        if (trigger.IsActive == false)
             SpriteColor.material.color = Color.white;
-        }
-        else if (ts.IsActive == true && isOn == false)
-        {
+        else if (trigger.IsActive == true && isOn == false)
             SpriteColor.material.color = Color.gray;
-        }
-        else if (ts.IsActive == true && isOn == true)
-        {
+        else if (trigger.IsActive == true && isOn == true)
             SpriteColor.material.color = Color.green;
-        }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
-            if (ts.IsActive)
-            {
+            if (trigger.IsActive)
                 isOn = true;
-            }
         }
     }
 }

@@ -1,3 +1,16 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	PlayerManager.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Tyler Dean (tyler.dean@digipen.edu)
+//              Melanie Baloban (melanie.baloban@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,13 +71,15 @@ public class PlayerManager : MonoBehaviour
     /* Game Updates */
     void Update()
     {
-        // death
+        // Death
         if (rigidBody.position.y < DeathDepth)
         {
             SetPlayerInactive();
+            
             soundEffectPlayer.Stop();
             soundEffectPlayer.clip = deathSound;
             soundEffectPlayer.Play(0);
+
             rigidBody.position = respawnPoint;
             Instantiate(deathParticles, rigidBody.position, Quaternion.identity);
             Invoke("SetPlayerActive", RespawnTimer);

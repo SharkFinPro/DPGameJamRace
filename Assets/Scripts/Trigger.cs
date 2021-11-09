@@ -1,3 +1,15 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	Trigger.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Tyler Dean (tyler.dean@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +17,10 @@ using UnityEngine;
 public class Trigger : MonoBehaviour
 {
     public bool IsActive = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
-        {
             IsActive = true;
-        }
     }
 }

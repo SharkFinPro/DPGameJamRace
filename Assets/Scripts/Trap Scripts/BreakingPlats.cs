@@ -1,3 +1,15 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	BreakingPlats.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Tyler Dean (tyler.dean@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,13 +53,8 @@ public class BreakingPlats : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {        
-        if (collision.collider.gameObject.tag == "Player" || collision.collider.gameObject.tag == "Player2")
-        {
-            if (enabler.isActivated == true)
-            {
-                Invoke("Fall", delay);
-            }
-        }
+        if ((collision.collider.gameObject.tag == "Player" || collision.collider.gameObject.tag == "Player2") && enabler.isActivated)
+            Invoke("Fall", delay);
         else if (collision.collider.gameObject.layer == 6)
         {
             fadeOut = true;        
@@ -73,7 +80,7 @@ public class BreakingPlats : MonoBehaviour
         fadeOut = false;
         transform.position = homePos;
         rigidBody.velocity = new Vector2(0, 0);
-        this.transform.rotation = rotationStorage;
+        transform.rotation = rotationStorage;
         boxCollider.enabled = true;
 
         Color tempColor = spriteRenderer.color;

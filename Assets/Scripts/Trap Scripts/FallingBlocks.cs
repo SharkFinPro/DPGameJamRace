@@ -1,23 +1,36 @@
+//------------------------------------------------------------------------------
+//
+// File Name:	FallingBlocks.cs
+// Author(s):	Alex Martin (alexander.martin@digipen.edu)
+//              Tyler Dean (tyler.dean@digipen.edu)
+// Project:	November Game Jam - Vertical Race Game
+// Course:	WANIC VGP2
+//
+// Copyright © 2021 DigiPen (USA) Corporation.
+//
+//------------------------------------------------------------------------------
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//tyler wrote this
+
 public class FallingBlocks : MonoBehaviour
 {    
     public float fadeTime;
-    Rigidbody2D rb;
-    EnableScript enabler;
     public GameObject enablerObj;
+
+    private Rigidbody2D rigidBody;
+    private EnableScript enabler;
+
     private bool fadeOut = false;
-    // Start is called before the first frame update
+
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rigidBody = this.GetComponent<Rigidbody2D>();
         enabler = enablerObj.GetComponent<EnableScript>();
-        rb.isKinematic = true;
+        rigidBody.isKinematic = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (fadeOut == true)
@@ -27,10 +40,9 @@ public class FallingBlocks : MonoBehaviour
             SpriteColor.color = Color.Lerp(currentColor, Color.clear, fadeTime * Time.deltaTime);
         }
         if (enabler.isActivated == true)
-        {
-            rb.isKinematic = false;
-        }
+            rigidBody.isKinematic = false;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {     
         if (collision.collider.gameObject.layer == 6)
@@ -39,6 +51,7 @@ public class FallingBlocks : MonoBehaviour
             Invoke("DestroyObj", fadeTime);
         }
     }
+
     void DestroyObj()
     {
         Destroy(this.gameObject);
