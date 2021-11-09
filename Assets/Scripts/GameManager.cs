@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public PlayerManager player1;
     public PlayerManager player2;
 
+    public GameObject Player1Win;
+    public GameObject Player2Win;
     public GameObject menuOverlay;
     public GameObject endOverlay;
 
@@ -54,8 +56,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void endScene()
+    public void endScene(int winner)
     {
+        if (winner == 1)
+        {
+            Player1Win.SetActive(true);
+        }
+        if (winner == 2)
+        {
+            Player2Win.SetActive(true);
+        }
         player1.freeze();
         player2.freeze();
         endOverlay.SetActive(true);

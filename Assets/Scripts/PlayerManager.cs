@@ -18,6 +18,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     /* Public Variables */
+    public int PlayerNumber;
     public float groundSpeed;
     public float maxGroundSpeed;
     public float groundFriction;
@@ -131,7 +132,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.tag == "win")
         {
-            gameManager.endScene();
+            gameManager.endScene(PlayerNumber);
             return;
         }
         else if (collision.tag == "respawn")
