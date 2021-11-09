@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitPoint: {fileID: 683566367055658630}
-  trigger: {fileID: 6452338272954654976}
+  triggerObject: {fileID: 6452338272954654976}
 --- !u!61 &683566366943114863
 BoxCollider2D:
   m_ObjectHideFlags: 0
