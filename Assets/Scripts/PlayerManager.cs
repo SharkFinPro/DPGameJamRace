@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
 
     public AudioSource soundEffectPlayer;
     public AudioClip deathSound;
+    public AudioClip winSound;
 
     /* Private Variables */
     private Rigidbody2D rigidBody;
@@ -133,6 +134,9 @@ public class PlayerManager : MonoBehaviour
         if (collision.tag == "win")
         {
             gameManager.endScene(PlayerNumber);
+            soundEffectPlayer.clip = winSound;
+            soundEffectPlayer.Play(0);
+         
             return;
         }
         else if (collision.tag == "respawn")
@@ -151,6 +155,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.collider.tag == "death")
         {
+            soundEffectPlayer.clip = deathSound;
+            soundEffectPlayer.Play(0);
+
             SetPlayerInactive();
             rigidBody.position = respawnPoint;
             Instantiate(deathParticles, rigidBody.position, Quaternion.identity);
