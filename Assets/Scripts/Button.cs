@@ -20,11 +20,11 @@ public class Button : MonoBehaviour
     {
         if (ts.IsActive == false)
         {
-            SpriteColor.material.color = Color.gray;
+            SpriteColor.material.color = Color.white;
         }
         else if (ts.IsActive == true && isOn == false)
         {
-            SpriteColor.material.color = Color.red;
+            SpriteColor.material.color = Color.gray;
         }
         else if (ts.IsActive == true && isOn == true)
         {

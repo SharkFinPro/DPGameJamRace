@@ -36,7 +36,7 @@ public class BreakingPlats : MonoBehaviour
             Color tempColor = spriteRenderer.color;
             tempColor.a -= (1f / fadeTime) * Time.deltaTime;
             spriteRenderer.color = tempColor;
-        }
+        }   
     }
 
     private void OnCollisionStay2D(Collision2D collision)

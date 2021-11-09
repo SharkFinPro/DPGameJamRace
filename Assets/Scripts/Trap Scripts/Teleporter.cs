@@ -10,7 +10,9 @@ public class Teleporter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {       
-        ts = trigger.GetComponent<Trigger>();   
+        ts = trigger.GetComponent<Trigger>();
+        SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
+        SpriteColor.color = Color.gray;
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class Teleporter : MonoBehaviour
         if (ts.IsActive == true)
         {
             SpriteRenderer SpriteColor = this.gameObject.GetComponent<SpriteRenderer>();
-            SpriteColor.color = Color.cyan;           
+            SpriteColor.color = Color.green;           
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
